@@ -110,8 +110,12 @@ def main():
         with torch.inference_mode():
             # agent stepping
             # actions = policy(obs)
+            actions = torch.zeros(
+                (env.num_envs, env.action_space.shape[0]), 
+                device=env.unwrapped.device
+            )
             # env stepping
-            # obs, _, _, _ = env.step(actions)
+            obs, _, _, _ = env.step(actions)
             pass
         if args_cli.video:
             timestep += 1
